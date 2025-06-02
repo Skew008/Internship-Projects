@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="231fd1e7-9c26-4ab0-90d1-e19f1f34b5fe" name="Changes" comment="Task12">
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/src/main/java/org/example/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/src/main/java/org/example/model/IRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/src/main/java/org/example/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hotel-reservation/src/test/java/org/example/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task11/jsrc/main/java/com/task11/handler/NotFoundHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task11/jsrc/main/java/com/task11/ApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task11/jsrc/main/java/com/task11/ApiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;shreyanshrajesh_telrandhe&quot;,
+      &quot;fullname&quot;: &quot;Shreyansh Rajesh Telrandhe&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://git.epam.com/shreyanshrajesh_telrandhe/syndicate-tasks.git&quot;,
+    &quot;second&quot;: &quot;f33a28ad-90f3-44a1-81d7-bb24e8ff9c0d&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2uWXlFJtSgjtjWZLFKz4nxTO7Ia" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/shreyanshrajesh_telr/syndicate-tasks/task12"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="231fd1e7-9c26-4ab0-90d1-e19f1f34b5fe" name="Changes" comment="" />
+      <created>1742365454256</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742365454256</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742368715489</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742368715489</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742369112320</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742369112320</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742375541821</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742375541821</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742376548660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742376548660</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742376854705</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742376854705</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742377270602</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742377270602</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742379053023</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742379053023</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742379673666</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742379673666</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Task12">
+      <option name="closed" value="true" />
+      <created>1742380171952</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742380171952</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task12" />
+    <option name="LAST_COMMIT_MESSAGE" value="Task12" />
+  </component>
+</project>

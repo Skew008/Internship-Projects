@@ -1,0 +1,1435 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="SwaggerUI"/>
+    <title>PathSync - SwaggerUI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css"/>
+</head>
+<style>
+    .opblock.opblock-options {
+        display: none;
+    }
+</style>
+
+<body>
+
+<div id="swagger-ui"></div>
+
+<script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js" crossorigin></script>
+<script id="data" type="application/json">
+    {
+        "openapi": "3.1.0",
+        "info": {
+            "title": "PathSync API",
+            "version": "v1"
+        },
+        "servers": [
+            {
+                "url": "{protocol}://{host}",
+                "description": "custom server",
+                "variables": {
+                    "protocol": {
+                        "enum": [
+                            "http"
+                        ],
+                        "default": "http",
+                        "description": "The protocol to use"
+                    },
+                    "host": {
+                        "default": "localhost:8080",
+                        "description": "The host name or IP address"
+                    }
+                }
+            }
+        ],
+        "paths": {
+            "/user-progress/mark-completed": {
+                "post": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to mark a sub-topic as completed.",
+                    "operationId": "markSubTopicAsCompleted",
+                    "parameters": [
+                        {
+                            "name": "topicName",
+                            "in": "query",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "subTopicName",
+                            "in": "query",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "content": {
+                                "*/*": {
+                                    "example": {
+                                        "message": "Progress updated successfully"
+                                    }
+                                }
+                            },
+                            "description": "OK"
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/survey": {
+                "get": {
+                    "tags": [
+                        "Resume"
+                    ],
+                    "description": "This method is used to get the survey for a user.",
+                    "operationId": "getUserSurvey",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SurveyResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                },
+                "post": {
+                    "tags": [
+                        "Survey"
+                    ],
+                    "description": "This method is used to submit the survey for a user.",
+                    "operationId": "submitSurvey",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SurveySubmissionDTO"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SurveyResponseDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/resume/upload": {
+                "post": {
+                    "tags": [
+                        "Resume"
+                    ],
+                    "description": "This method is used to upload a resume.",
+                    "operationId": "uploadResume",
+                    "parameters": [
+                        {
+                            "name": "file",
+                            "in": "query",
+                            "required": true,
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ResumeDetails"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/learn-path/start": {
+                "post": {
+                    "tags": [
+                        "LearningPath"
+                    ],
+                    "description": "This method is used to start a learning path.",
+                    "operationId": "startLearningPath",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/learn-path/add": {
+                "post": {
+                    "tags": [
+                        "LearningPath"
+                    ],
+                    "description": "This method is used to add a learning path.",
+                    "operationId": "addStandardLearningPath",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StandardLearningPath"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "example": {
+                                        "message": "Standard learning path added successfully"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/auth/register": {
+                "post": {
+                    "tags": [
+                        "Auth"
+                    ],
+                    "description": "This method registers a new user and returns their access token.",
+                    "operationId": "register",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignUpRequest"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Successful operation",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SignupSuccessResponse"
+                                    },
+                                    "examples": {
+                                        "Successful Signup": {
+                                            "description": "Successful Signup",
+                                            "value": {
+                                                "message": "User registered successfully"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "409": {
+                            "description": "Failed operation",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SignupFailResponse"
+                                    },
+                                    "examples": {
+                                        "User exists": {
+                                            "description": "User exists",
+                                            "value": {
+                                                "message": "A user with this email address already exists."
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/auth/login": {
+                "post": {
+                    "tags": [
+                        "Auth"
+                    ],
+                    "description": "This method authenticates a user and returns an access token.",
+                    "operationId": "login",
+                    "requestBody": {
+                        "description": "User parameters",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SignInRequest"
+                                },
+                                "examples": {
+                                    "Valid Signup Request": {
+                                        "description": "Valid Signin Request",
+                                        "value": {
+                                            "email": "krish@example.com",
+                                            "password": "Krish@123"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful operation",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SignInResponse"
+                                    },
+                                    "examples": {
+                                        "Successful Login": {
+                                            "description": "Successful Login",
+                                            "value": {
+                                                "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqaG9uX3NtaXRoQGV4YW1wbGUuY29tIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNzMwMTYyMjYxLCJpYXQiOjE3MzAxMjYyNjEsImp0aSI6IjNkMGQ0OThhLTQxYzEtNDk1NS1hODc3LWI3MTZlMzIyNzYzZiJ9.z0FS_3BBz2UlbE8doPx24i6IWZO6TBTpbG5jtadlvFM",
+                                                "username": "Krish Bose",
+                                                "role": "USER",
+                                                "surveyStatus": "INCOMPLETE",
+                                                "assessmentStatus": "INCOMPLETE"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/assessments/{id}/start": {
+                "post": {
+                    "tags": [
+                        "Assessment"
+                    ],
+                    "description": "This method is used to start an assessment.",
+                    "operationId": "startAssessment",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/AssessmentDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/assessments/{id}/complete": {
+                "post": {
+                    "tags": [
+                        "Assessment"
+                    ],
+                    "description": "This method is used to complete an assessment.",
+                    "operationId": "completeAssessment",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/AssessmentCompletion"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/assessments/generate": {
+                "post": {
+                    "tags": [
+                        "Assessment"
+                    ],
+                    "description": "This method is used to generate an assessment.",
+                    "operationId": "generateAssessment",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/generateAssessmentResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/api/notifications/{notificationId}/acknowledge": {
+                "post": {
+                    "tags": [
+                        "Notification"
+                    ],
+                    "description": "This method is used to acknowledge a notification.",
+                    "operationId": "acknowledgeNotification",
+                    "parameters": [
+                        {
+                            "name": "notificationId",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/api/activity/heartbeat": {
+                "post": {
+                    "tags": [
+                        "Activity"
+                    ],
+                    "description": "This method is used to record a heartbeat.",
+                    "operationId": "recordHeartbeat",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/api/activity/end-session": {
+                "post": {
+                    "tags": [
+                        "Activity"
+                    ],
+                    "description": "This method is used to end a session.",
+                    "operationId": "endSession",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/user-progress/pending-tasks": {
+                "get": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to get the pending tasks for a user.",
+                    "operationId": "getPendingTasks",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/ProgressEntry"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/user-progress/dashboard": {
+                "get": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to get the dashboard metrics for a user.",
+                    "operationId": "getDashboardMetrics",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/DashboardMetrics"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/user-progress/dashboard/upcoming-due-dates": {
+                "get": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to get the upcoming due dates for a user.",
+                    "operationId": "getUpcomingDueDates",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/ProgressEntry"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/user-progress/dashboard/major-skills": {
+                "get": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to get the major skills for a user.",
+                    "operationId": "getMajorSkills",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/user-progress/completed-tasks": {
+                "get": {
+                    "tags": [
+                        "UserProgress"
+                    ],
+                    "description": "This method is used to get the completed tasks for a user.",
+                    "operationId": "getCompletedTasks",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/ProgressEntry"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/survey/definitions": {
+                "get": {
+                    "tags": [
+                        "Survey"
+                    ],
+                    "description": "This method is used to get the available roles for the survey.",
+                    "operationId": "getAvailableRoles",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/survey/definitions/{role}/{language}": {
+                "get": {
+                    "tags": [
+                        "Survey"
+                    ],
+                    "description": "This method is used to get the survey definition for a specific role and language.",
+                    "operationId": "getSurveyDefinition",
+                    "parameters": [
+                        {
+                            "name": "role",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "name": "language",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/SurveyDefinitionDTO"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/survey/definitions/{role}/languages": {
+                "get": {
+                    "tags": [
+                        "Survey"
+                    ],
+                    "description": "This method is used to get the available languages for a specific role.",
+                    "operationId": "getAvailableLanguages",
+                    "parameters": [
+                        {
+                            "name": "role",
+                            "in": "path",
+                            "required": true,
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/learn-path/fetch": {
+                "get": {
+                    "tags": [
+                        "LearningPath"
+                    ],
+                    "description": "This method is used to fetch a custom learning path.",
+                    "operationId": "getCustomLearningPath",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/CustomLearningPath"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/learn-path/create": {
+                "get": {
+                    "tags": [
+                        "LearningPath"
+                    ],
+                    "description": "This method is used to create a custom learning path.",
+                    "operationId": "createCustomLearningPath",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "questionResults": {
+                                            "type": "object",
+                                            "properties": {
+                                                "questionId": {
+                                                    "type": "string"
+                                                },
+                                                "answer": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/CustomLearningPath"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/assessments": {
+                "get": {
+                    "tags": [
+                        "Assessment"
+                    ],
+                    "description": "This method is used to get the assessments for a user.",
+                    "operationId": "getUserAssessments",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/AssessmentDTO"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/api/notifications": {
+                "get": {
+                    "tags": [
+                        "Notification"
+                    ],
+                    "description": "This method is used to get the pending notifications for a user.",
+                    "operationId": "getPendingNotifications",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/WellnessNotification"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            },
+            "/api/activity/session": {
+                "get": {
+                    "tags": [
+                        "Activity"
+                    ],
+                    "description": "This endpoint is used to get session details.",
+                    "operationId": "getCurrentSession",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "content": {
+                                "*/*": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ActiveSession"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "bearerAuth": []
+                        }
+                    ]
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "generateAssessmentResponse": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "userEmail": {
+                            "type": "string"
+                        },
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "preferredLanguage": {
+                            "type": "string"
+                        },
+                        "skillLevel": {
+                            "type": "string"
+                        },
+                        "questions": {
+                            "type": "array",
+                            "description": "Array of questions included in the quiz.",
+                            "items": {
+                                "$ref": "#/components/schemas/QuestionDTO"
+                            }
+                        }
+                    }
+                },
+                "AssessmentCompletion": {
+                    "type": "object",
+                    "properties": {
+                        "finalSkillLevel": {
+                            "type": "string"
+                        },
+                        "nextStep": {
+                            "type": "string"
+                        },
+                        "message": {
+                            "type": "string"
+                        },
+                        "score": {
+                            "type": "string"
+                        },
+                        "questionResults": {
+                            "type": "object",
+                            "properties": {
+                                "questionId": {
+                                    "type": "string"
+                                },
+                                "answer": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "CustomLearningPath": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "topics": {
+                            "type": "object",
+                            "properties": {
+                                "topicName": {
+                                    "$ref": "#/components/schemas/Topic"
+                                }
+                            }
+                        }
+                    }
+                },
+                "DashboardMetrics": {
+                    "type": "object",
+                    "properties": {
+                        "totalTimeSpent": {
+                            "type": "string"
+                        },
+                        "totalActiveTime": {
+                            "type": "string"
+                        },
+                        "totalBreaksTaken": {
+                            "type": "string"
+                        },
+                        "totalSessionsStarted": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SignupSuccessResponse": {
+                    "type": "object",
+                    "properties": {
+                        "message": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SignupFailResponse": {
+                    "type": "object",
+                    "properties": {
+                        "message": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SignInRequest": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SignInResponse": {
+                    "type": "object",
+                    "properties": {
+                        "accessToken": {
+                            "type": "string"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "role": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SignUpRequest": {
+                    "type": "object",
+                    "properties": {
+                        "firstName": {
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SurveySubmissionDTO": {
+                    "type": "object",
+                    "properties": {
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "preferredLanguage": {
+                            "type": "string"
+                        },
+                        "skillResponses": {
+                            "type": "object",
+                            "properties": {
+                                "surveryQuestionNumber": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "SurveyResponseDTO": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "preferredLanguage": {
+                            "type": "string"
+                        },
+                        "skillAssessments": {
+                            "type": "object",
+                            "properties": {
+                                "surveryQuestionNumber": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "overallSkillLevel": {
+                            "type": "string"
+                        },
+                        "completedAt": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "ResumeDetails": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "skills": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "StandardLearningPath": {
+                    "type": "object",
+                    "properties": {
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "targetLanguage": {
+                            "type": "string"
+                        },
+                        "topics": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "_id": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "targetLanguage",
+                        "targetRole",
+                        "topics"
+                    ]
+                },
+                "AssessmentDTO": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "preferredLanguage": {
+                            "type": "string"
+                        },
+                        "skillLevel": {
+                            "type": "string"
+                        },
+                        "questions": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/QuestionDTO"
+                            }
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        },
+                        "startedAt": {
+                            "type": "string"
+                        },
+                        "completedAt": {
+                            "type": "string"
+                        },
+                        "durationMinutes": {
+                            "type": "string"
+                        },
+                        "completed": {
+                            "type": "boolean"
+                        },
+                        "score": {
+                            "type": "string"
+                        },
+                        "timeRemainingSeconds": {
+                            "type": "string"
+                        },
+                        "questionResponses": {
+                            "type": "object",
+                            "properties": {
+                                "questionId": {
+                                    "type": "string"
+                                },
+                                "answer": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "QuestionDTO": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "text": {
+                            "type": "string"
+                        },
+                        "options": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "userSelectedOption": {
+                            "type": "string"
+                        },
+                        "skillCategory": {
+                            "type": "string"
+                        },
+                        "difficultyLevel": {
+                            "type": "string"
+                        },
+                        "correctOptionIndex": {
+                            "type": "string"
+                        },
+                        "explanation": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "ProgressEntry": {
+                    "type": "object",
+                    "properties": {
+                        "topicName": {
+                            "type": "string"
+                        },
+                        "subTopicName": {
+                            "type": "string"
+                        },
+                        "estimatedCompletionDate": {
+                            "type": "string"
+                        },
+                        "completionStatus": {
+                            "type": "boolean"
+                        },
+                        "duration": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "SkillQuestion": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "text": {
+                            "type": "string"
+                        },
+                        "skillCategory": {
+                            "type": "string"
+                        },
+                        "options": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "fromResume": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "SurveyDefinitionDTO": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "targetRole": {
+                            "type": "string"
+                        },
+                        "language": {
+                            "type": "string"
+                        },
+                        "questions": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/SkillQuestion"
+                            }
+                        }
+                    }
+                },
+                "SubTopic": {
+                    "type": "object",
+                    "properties": {
+                        "duration": {
+                            "type": "string"
+                        },
+                        "completionStatus": {
+                            "type": "string"
+                        },
+                        "learningResources": {
+                            "type": "object",
+                            "properties": {
+                                "resourceName": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "Topic": {
+                    "type": "object",
+                    "properties": {
+                        "subTopics": {
+                            "type": "object",
+                            "properties": {
+                                "subTopicName": {
+                                    "$ref": "#/components/schemas/SubTopic"
+                                }
+                            }
+                        }
+                    }
+                },
+                "WellnessNotification": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "userEmail": {
+                            "type": "string"
+                        },
+                        "message": {
+                            "type": "string"
+                        },
+                        "sentAt": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "acknowledge": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "ActiveSession": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "userEmail": {
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "type": "string"
+                        },
+                        "lastActivityTime": {
+                            "type": "string"
+                        },
+                        "totalActiveTimeSeconds": {
+                            "type": "string"
+                        },
+                        "breakNotificationSent": {
+                            "type": "boolean"
+                        },
+                        "active": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            },
+            "securitySchemes": {
+                "bearerAuth": {
+                    "type": "http",
+                    "in": "header",
+                    "scheme": "bearer",
+                    "bearerFormat": "JWT"
+                }
+            }
+        }
+    }
+</script>
+<script>
+    window.onload = () => {
+        const dataElement = document.getElementById('data');
+        const spec = JSON.parse(dataElement.textContent);
+        window.ui = SwaggerUIBundle({
+            spec: spec,
+            dom_id: '#swagger-ui',
+        });
+    };
+</script>
+</body>
+</html>

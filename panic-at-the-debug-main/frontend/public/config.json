@@ -1,0 +1,16 @@
+{
+    "enableMessageCooldown": true,
+    "cooldownDuration": 1000,
+    "botReplyDelay": 1000,
+    "chatProvider": "gemini", 
+    "apiKey": "AIzaSyBbLS4xiJ0OoSR63J1JwtpJpZ0-ALLSTyA",
+    "modelName": "gemini-1.5-flash",
+    "supportedProviders": {
+        "gemini": {
+            "name": "Gemini AI",
+            "apiKey": "AIzaSyBbLS4xiJ0OoSR63J1JwtpJpZ0-ALLSTyA",
+            "model": "gemini-1.5-flash"
+        }
+    },
+    "validTopics": ["java", "javascript", "backend", "frontend", "testing", "roadmap", "software developer","aritificial intelligence","AI","React","Spring"]
+}
